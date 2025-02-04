@@ -1,5 +1,6 @@
 package com.git.populargitrepos.data.remote.api
 
+
 import com.git.populargitrepos.common.DataManager.ORDER
 import com.git.populargitrepos.common.DataManager.SEARCH_REPOSITORY
 import com.git.populargitrepos.common.DataManager.SHORT
@@ -16,4 +17,6 @@ interface GithubAPI {
         @Query("sort") short : String = SHORT,
         @Query("order") order : String = ORDER
     ) : Response<RepositoryListResponse>
+
+
 }
