@@ -2,6 +2,8 @@ package com.git.populargitrepos.di
 
 import com.git.populargitrepos.common.DataManager
 import com.git.populargitrepos.data.remote.api.GithubAPI
+import com.git.populargitrepos.domain.repository.github_repository_list.GithubRepository
+import com.git.populargitrepos.domain.repository.github_repository_list.GithubRepositoryImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,4 +50,10 @@ object GitHubClint {
     @Singleton
     @Provides
     fun provideAPI(retrofit: Retrofit) : GithubAPI = retrofit.create(GithubAPI::class.java)
+
+
+    //todo github api implement
+    @Singleton
+    @Provides
+    fun githubRepositoryImp(githubAPI: GithubAPI) : GithubRepository = GithubRepositoryImp(api = githubAPI)
 }

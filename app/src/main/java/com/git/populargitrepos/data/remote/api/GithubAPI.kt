@@ -11,7 +11,7 @@ import retrofit2.http.Query
 
 
 interface GithubAPI {
-    @GET("repositories")
+    @GET("search/repositories")
     suspend fun repositoryList(
         @Query("q") search : String = SEARCH_REPOSITORY,
         @Query("sort") short : String = SHORT,
