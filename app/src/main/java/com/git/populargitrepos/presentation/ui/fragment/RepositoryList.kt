@@ -11,11 +11,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.git.populargitrepos.databinding.RepositorylistBinding
+import com.git.populargitrepos.presentation.ui.adapter.RepositoryItemAdapter
 import com.git.populargitrepos.presentation.viewmodel.GithubViewModel
 import com.git.populargitrepos.utils.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 private const val TAG = "RepositoryList"
 @AndroidEntryPoint
@@ -23,6 +25,7 @@ class RepositoryList : Fragment() {
 
     private val binding by lazy { RepositorylistBinding.inflate(layoutInflater) }
     private val viewmodel by viewModels<GithubViewModel>()
+    @Inject lateinit var repositoryItemAdapter: RepositoryItemAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,20 +37,25 @@ class RepositoryList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        getRepositoryList()
+        initView()
+    }
+
+    private fun initView(){
         binding.apply {
-            Btn.setOnClickListener {
-                RepositoryListDirections.actionRepositoryListToRepositoryDetails().apply {
-                    findNavController().navigate(this)
-                }
+            RecyclerView.apply {
+                setHasFixedSize(true)
+                adapter = repositoryItemAdapter
             }
         }
+    }
 
+    private fun getRepositoryList(){
         lifecycleScope.launch {
             viewmodel.repositoryState.collectLatest {
                 when(it){
                     is NetworkResult.Success -> {
-                        Log.d(TAG, "onViewCreated: ${it.data}")
-                        Toast.makeText(requireContext(), it.data.toString(), Toast.LENGTH_SHORT).show()
+                        repositoryItemAdapter.submitList(it.data?.items)
                     }
                     is NetworkResult.Loading -> {
                         Toast.makeText(requireContext(), "loading", Toast.LENGTH_SHORT).show()

@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.PopularGitRepos" parent="Base.Theme.PopularGitRepos" />
+
+    <style name="ShapeAppearanceOverlay.App.circleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

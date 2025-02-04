@@ -1,4 +1,8 @@
 package com.git.populargitrepos.presentation.ui.viewholder
 
-class RepositoryItemVH {
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.git.populargitrepos.databinding.RepositoryItemBinding
+
+class RepositoryItemVH(val binding : RepositoryItemBinding) : ViewHolder(binding.root) {
 }
