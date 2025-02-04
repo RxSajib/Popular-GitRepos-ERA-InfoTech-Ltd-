@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/repositoryList">
+
+    <fragment
+        android:id="@+id/repositoryList"
+        android:name="com.git.populargitrepos.presentation.ui.fragment.RepositoryList"
+        android:label="@string/repository_list"
+        tools:layout="@layout/repositorylist" >
+        <action
+            android:id="@+id/action_repositoryList_to_repositoryDetails"
+            app:destination="@id/repositoryDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/repositoryDetails"
+        android:name="com.git.populargitrepos.presentation.ui.fragment.RepositoryDetails"
+        android:label="@string/repository_details"
+        tools:layout="@layout/repository_details" />
+</navigation>
