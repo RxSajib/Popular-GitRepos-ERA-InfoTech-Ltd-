@@ -24,7 +24,7 @@ class GithubViewModel @Inject constructor(
         getRepositories()
     }
 
-    private fun getRepositories() {
+    fun getRepositories() {
         try {
             viewModelScope.launch(Dispatchers.IO) {
                 _repositoryState.value = NetworkResult.Loading()
