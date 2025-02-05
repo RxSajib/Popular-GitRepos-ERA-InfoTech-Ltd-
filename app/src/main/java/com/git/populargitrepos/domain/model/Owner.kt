@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 @Keep
 data class Owner(
     val avatar_url: String?,
-    val events_url: String?,
+   /* val events_url: String?,
     val followers_url: String?,
     val following_url: String?,
     val gists_url: String?,
@@ -26,5 +26,5 @@ data class Owner(
     val subscriptions_url: String?,
     val type: String?,
     val url: String?,
-    val user_view_type: String?
+    val user_view_type: String?*/
 ) : Parcelable

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.git.populargitrepos.common.DataManager
 import com.git.populargitrepos.common.DataManager.GITHUB_DATABASE_ROOT
+import com.git.populargitrepos.data.local.dao.Dao
 import com.git.populargitrepos.data.local.database.GitHubDatabase
 import com.git.populargitrepos.data.remote.api.GithubAPI
 import com.git.populargitrepos.domain.repository.github_repository_list.GithubRepository
@@ -58,11 +59,10 @@ object GitHubClint {
 
 
     //todo github api implement
-    @Singleton
-    @Provides
-    fun githubRepositoryImp(githubAPI: GithubAPI): GithubRepository =
-        GithubRepositoryImp(api = githubAPI)
 
+    @Provides
+    @Singleton
+    fun provideDao(gitHubDatabase: GitHubDatabase) : Dao = gitHubDatabase.githubDao()
 
     //todo room database implementation
     @Provides
@@ -73,5 +73,10 @@ object GitHubClint {
         GITHUB_DATABASE_ROOT
     ).fallbackToDestructiveMigration()
         .build()
+
+    @Singleton
+    @Provides
+    fun githubRepositoryImp(githubAPI: GithubAPI, dao: Dao, @ApplicationContext context: Context): GithubRepository =
+        GithubRepositoryImp(api = githubAPI, repositoryDao = dao, context = context)
 
 }
