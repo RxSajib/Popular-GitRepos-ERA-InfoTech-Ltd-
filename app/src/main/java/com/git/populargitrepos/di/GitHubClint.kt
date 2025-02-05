@@ -1,12 +1,17 @@
 package com.git.populargitrepos.di
 
+import android.content.Context
+import androidx.room.Room
 import com.git.populargitrepos.common.DataManager
+import com.git.populargitrepos.common.DataManager.GITHUB_DATABASE_ROOT
+import com.git.populargitrepos.data.local.database.GitHubDatabase
 import com.git.populargitrepos.data.remote.api.GithubAPI
 import com.git.populargitrepos.domain.repository.github_repository_list.GithubRepository
 import com.git.populargitrepos.domain.repository.github_repository_list.GithubRepositoryImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,7 +45,7 @@ object GitHubClint {
     //todo add singleton instance for network clint
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient) : Retrofit = Retrofit.Builder()
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(DataManager.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
@@ -49,11 +54,24 @@ object GitHubClint {
 
     @Singleton
     @Provides
-    fun provideAPI(retrofit: Retrofit) : GithubAPI = retrofit.create(GithubAPI::class.java)
+    fun provideAPI(retrofit: Retrofit): GithubAPI = retrofit.create(GithubAPI::class.java)
 
 
     //todo github api implement
     @Singleton
     @Provides
-    fun githubRepositoryImp(githubAPI: GithubAPI) : GithubRepository = GithubRepositoryImp(api = githubAPI)
+    fun githubRepositoryImp(githubAPI: GithubAPI): GithubRepository =
+        GithubRepositoryImp(api = githubAPI)
+
+
+    //todo room database implementation
+    @Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
+        context = context,
+        GitHubDatabase::class.java,
+        GITHUB_DATABASE_ROOT
+    ).fallbackToDestructiveMigration()
+        .build()
+
 }

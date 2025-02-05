@@ -61,6 +61,7 @@ dependencies {
 
     //todo add room database
     implementation(libs.androidx.room.runtime)
+    implementation(libs.room.ktx)
     ksp(libs.androidx.room.compiler)
 
     //todo network clint by retrofit
