@@ -98,7 +98,7 @@ class GithubRepositoryImp(
                         val repositoryEntities = apiResponse.items?.mapNotNull { item ->
                             item?.let {
                                 Item(
-                                    id = it.id ?: 0,  // Provide default value if null
+                                    id = it.id ?: 0,  //todo Provide default value if null
                                     name = it.name ?: "Unknown",
                                     description = it.description ?: "No description",
                                     owner = it.owner?.let { owner ->
