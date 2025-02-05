@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--home ui size-->
+    <dimen name="read_icon_size">25dp</dimen>
+    <dimen name="read_icon_margin_top">10dp</dimen>
+    <!--home ui size-->
+
+    <!--repository single item size-->
+    <dimen name="repository_image_size">60dp</dimen>
+    <dimen name="repository_name_size">16sp</dimen>
+    <dimen name="repository_details_size">12sp</dimen>
+    <dimen name="repository_details_margin_top">3sp</dimen>
+    <dimen name="repository_margin_start">15sp</dimen>
+    <dimen name="repository_margin_padding">5dp</dimen>
+    <!--repository single item size-->
+
+</resources>

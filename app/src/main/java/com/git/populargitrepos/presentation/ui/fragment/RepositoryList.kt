@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -51,23 +52,43 @@ class RepositoryList : Fragment() {
     }
 
     private fun getRepositoryList(){
-        lifecycleScope.launch {
-            viewmodel.repositoryState.collectLatest {
-                when(it){
-                    is NetworkResult.Success -> {
-                        repositoryItemAdapter.submitList(it.data?.items)
-                    }
-                    is NetworkResult.Loading -> {
-                        Toast.makeText(requireContext(), "loading", Toast.LENGTH_SHORT).show()
-                    }
-                    is NetworkResult.Empty -> {
+        binding.apply {
+            ReloadIcon.setOnClickListener {
+                viewmodel.getRepositories()
+            }
+            lifecycleScope.launch {
+                viewmodel.repositoryState.collectLatest {
+                    when(it){
+                        is NetworkResult.Success -> {
+                            repositoryItemAdapter.submitList(it.data?.items)
+                            ErrorIcon.isVisible = false
+                            ErrorMessage.isVisible = false
+                            ReloadIcon.isVisible = false
+                            RecyclerView.isVisible = true
+                            ProgressBar.isVisible = false
+                        }
+                        is NetworkResult.Loading -> {
+                            ErrorIcon.isVisible = false
+                            ErrorMessage.isVisible = false
+                            ReloadIcon.isVisible = false
+                            RecyclerView.isVisible = false
+                            ProgressBar.isVisible = true
+                        }
+                        is NetworkResult.Empty -> {
 
-                    }
-                    is NetworkResult.Error -> {
-                        Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
+                        }
+                        is NetworkResult.Error -> {
+                            ErrorIcon.isVisible = true
+                            ErrorMessage.isVisible = true
+                            ReloadIcon.isVisible = true
+                            RecyclerView.isVisible = false
+                            ProgressBar.isVisible = false
+                            errorMessage = it.message
+                        }
                     }
                 }
             }
         }
+
     }
 }
