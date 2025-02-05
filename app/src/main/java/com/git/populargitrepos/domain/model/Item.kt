@@ -3,11 +3,16 @@ package com.git.populargitrepos.domain.model
 
 import android.os.Parcelable
 import androidx.annotation.Keep
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
+@Entity(tableName = "RepositoryDB")
 @Parcelize
 @Keep
 data class Item(
+    @PrimaryKey(autoGenerate = false)
+    val id: Int?,
     val allow_forking: Boolean?,
     val archive_url: String?,
     val archived: Boolean?,
@@ -46,7 +51,6 @@ data class Item(
     val homepage: String?,
     val hooks_url: String?,
     val html_url: String?,
-    val id: Int?,
     val is_template: Boolean?,
     val issue_comment_url: String?,
     val issue_events_url: String?,
@@ -79,7 +83,7 @@ data class Item(
     val svn_url: String?,
     val tags_url: String?,
     val teams_url: String?,
-    val topics: List<String?>?,
+ //   val topics: List<String?>?,
     val trees_url: String?,
     val updated_at: String?,
     val url: String?,

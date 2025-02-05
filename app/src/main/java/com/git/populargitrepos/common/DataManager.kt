@@ -7,4 +7,6 @@ object DataManager {
     const val SEARCH_REPOSITORY = "Android"
     const val SHORT = "stars"
     const val ORDER = "desc"
+
+    const val GITHUB_DATABASE_ROOT = "github_database"
 }
