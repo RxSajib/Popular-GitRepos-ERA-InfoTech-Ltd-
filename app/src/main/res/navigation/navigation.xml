@@ -22,5 +22,9 @@
         android:id="@+id/repositoryDetails"
         android:name="com.git.populargitrepos.presentation.ui.fragment.RepositoryDetails"
         android:label="@string/repository_details"
-        tools:layout="@layout/repository_details" />
+        tools:layout="@layout/repository_details" >
+        <argument
+            android:name="repository"
+            app:argType="com.git.populargitrepos.domain.model.Item" />
+    </fragment>
 </navigation>

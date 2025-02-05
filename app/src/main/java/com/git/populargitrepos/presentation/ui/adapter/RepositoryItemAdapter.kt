@@ -4,14 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.git.populargitrepos.databinding.RepositoryItemBinding
 import com.git.populargitrepos.domain.model.Item
 import com.git.populargitrepos.presentation.ui.viewholder.RepositoryItemVH
 import javax.inject.Inject
 
-class RepositoryItemAdapter @Inject constructor() : ListAdapter<Item, RepositoryItemVH>(DIFFUTILS) {
+class RepositoryItemAdapter @Inject constructor(
+) : ListAdapter<Item, RepositoryItemVH>(DIFFUTILS) {
 
-    companion object{
+    var onItemClick: ((Item) -> Unit)? = null //todo Nullable click listener
+
+    companion object {
         val DIFFUTILS = object : DiffUtil.ItemCallback<Item>() {
             override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
                 return oldItem.id == newItem.id
@@ -33,6 +37,11 @@ class RepositoryItemAdapter @Inject constructor() : ListAdapter<Item, Repository
     override fun onBindViewHolder(holder: RepositoryItemVH, position: Int) {
         holder.binding.apply {
             item = getItem(position)
+            if (holder.bindingAdapterPosition != RecyclerView.NO_POSITION) {
+                root.setOnClickListener {
+                    item?.let { onItemClick?.invoke(it) }  //todo Set click listener on root view
+                }
+            }
         }
     }
 }
