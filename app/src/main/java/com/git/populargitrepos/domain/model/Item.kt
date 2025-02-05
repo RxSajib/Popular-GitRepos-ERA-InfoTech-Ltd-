@@ -1,8 +1,11 @@
 package com.git.populargitrepos.domain.model
 
 
+import android.os.Parcelable
 import androidx.annotation.Keep
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Keep
 data class Item(
     val allow_forking: Boolean?,
@@ -55,7 +58,6 @@ data class Item(
     val license: License?,
     val merges_url: String?,
     val milestones_url: String?,
-    val mirror_url: Any?,
     val name: String?,
     val node_id: String?,
     val notifications_url: String?,
@@ -85,4 +87,4 @@ data class Item(
     val watchers: Int?,
     val watchers_count: Int?,
     val web_commit_signoff_required: Boolean?
-)
+) : Parcelable
