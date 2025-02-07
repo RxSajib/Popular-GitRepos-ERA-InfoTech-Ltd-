@@ -9,7 +9,7 @@ import com.git.populargitrepos.utils.LicenseTypeConverter
 import com.git.populargitrepos.utils.OwnerTypeConverter
 import com.git.populargitrepos.utils.StringListConverter
 
-@Database(entities = [Item::class], version = 972  , exportSchema = false)
+@Database(entities = [Item::class], version = 961  , exportSchema = false)
 @TypeConverters( OwnerTypeConverter::class, StringListConverter::class)  //todo Add typeconverter
 //LicenseTypeConverter::class,
 abstract class GitHubDatabase : RoomDatabase() {
