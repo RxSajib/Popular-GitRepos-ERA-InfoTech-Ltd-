@@ -1,4 +1,4 @@
-package com.git.populargitrepos.di
+package com.git.populargitrepos.presentation.di
 
 import android.content.Context
 import androidx.room.Room
