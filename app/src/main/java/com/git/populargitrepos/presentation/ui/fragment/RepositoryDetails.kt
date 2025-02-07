@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.git.populargitrepos.databinding.RepositoryDetailsBinding
 import com.git.populargitrepos.presentation.adapter.TopicAdapter
+import com.git.populargitrepos.presentation.ui.adapter.RepositoryItemAdapter
 import com.git.populargitrepos.utils.TimeDateUtils
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -21,7 +22,7 @@ class RepositoryDetails : Fragment() {
 
     private val binding by lazy { RepositoryDetailsBinding.inflate(layoutInflater) }
     private val args by navArgs<RepositoryDetailsArgs>()
-    @Inject lateinit var topicAdapter: TopicAdapter
+    @Inject lateinit var topicAdapter:  dagger.Lazy<TopicAdapter> //todo Lazy injection
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +38,7 @@ class RepositoryDetails : Fragment() {
     }
 
     private fun initView(){
+        val _adapter = topicAdapter.get()
         val mLayoutManager = FlexboxLayoutManager(requireContext())
         mLayoutManager.apply {
             flexDirection = FlexDirection.ROW
@@ -46,14 +48,14 @@ class RepositoryDetails : Fragment() {
             TopicRecyclerView.apply {
                 setHasFixedSize(true)
                 layoutManager = mLayoutManager
-                adapter = topicAdapter
+                adapter = _adapter
             }
             item = args.repository
             createDate = TimeDateUtils.convertUtcToLocalTime(args.repository.created_at)
             publishDate = TimeDateUtils.convertUtcToLocalTime(args.repository.pushed_at)
             updateDate = TimeDateUtils.convertUtcToLocalTime(args.repository.updated_at)
 
-            topicAdapter.submitList(args.repository.topics)
+            _adapter.submitList(args.repository.topics)
             Log.d(TAG, "initView: topic ${args.repository.topics}")
         }
     }
