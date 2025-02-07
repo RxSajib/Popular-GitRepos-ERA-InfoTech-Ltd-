@@ -31,7 +31,7 @@
             <TextView
                 android:id="@+id/KeywordSearchTitle"
                 tools:text = "Novel Toms"
-                android:textColor="@color/black"
+                android:textColor="@color/title_color"
                 android:textSize="@dimen/search_keyword_text_size"
                 android:ellipsize="end"
                 android:maxLines="2"

@@ -23,4 +23,19 @@
     <dimen name="search_keyword_text_size">12sp</dimen>
     <!--search keyword item-->
 
+    <!--details repository-->
+    <dimen name="owner_name_size">23sp</dimen>
+    <dimen name="language_margin_top">2sp</dimen>
+    <dimen name="time_date_margin_top">10dp</dimen>
+    <dimen name="date_time_size">10sp</dimen>
+    <dimen name="time_date_title">12sp</dimen>
+    <dimen name="topic_size">15sp</dimen>
+    <dimen name="time_date_box_padding">5dp</dimen>
+    <dimen name="topic_margin_top">10dp</dimen>
+    <dimen name="topic_view_margin_top">5dp</dimen>
+    <dimen name="owner_name_margin_top">10dp</dimen>
+    <dimen name="owner_profile_image_margin_top">15dp</dimen>
+    <dimen name="details_margin_top">10dp</dimen>
+    <!--details repository-->
+
 </resources>

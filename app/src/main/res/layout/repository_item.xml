@@ -45,7 +45,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/Details"
-                android:textColor="@color/black"
+                android:textColor="@color/title_color"
                 android:text="@{item.name}"
                 android:layout_marginStart="@dimen/repository_margin_start"
                 android:textSize="@dimen/repository_name_size"

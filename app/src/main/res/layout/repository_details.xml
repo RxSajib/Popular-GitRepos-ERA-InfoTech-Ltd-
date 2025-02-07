@@ -34,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             tools:background="@drawable/placholder_image"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="@dimen/owner_profile_image_margin_top"
             app:imageUrl="@{item.owner.avatar_url}"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.circleImageView"
             app:layout_constraintDimensionRatio="1:1"
@@ -48,24 +48,25 @@
             app:layout_constraintTop_toBottomOf="@+id/ProfileImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="15dp"
-            app:layout_constraintWidth_percent=".9"
+            android:layout_marginTop="@dimen/owner_name_margin_top"
+            app:layout_constraintWidth_percent=".95"
             android:gravity="center"
-            android:text = "Sajib Roy"
-            android:textColor="@color/black"
-            android:textSize="23sp"
+            tools:text = "Sajib Roy"
+            android:text="@{item.owner.login}"
+            android:textColor="@color/title_color"
+            android:textSize="@dimen/owner_name_size"
             android:textStyle="bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/LanguageText"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="@dimen/language_margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/OwnerName"
             android:layout_width="0dp"
-            android:text="@{`Language: `}"
+            android:text="@{item.language != null ? item.language : `Unknown language`}"
             android:textColor="@android:color/darker_gray"
             android:gravity="center"
             tools:text = "Language: C++"
@@ -77,7 +78,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintWidth_percent=".95"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/time_date_margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/LanguageText">
@@ -86,21 +87,21 @@
                 android:id="@+id/PublishedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                app:layout_constraintEnd_toStartOf="@+id/ViewBox"
+                android:padding="@dimen/time_date_box_padding"
+                app:layout_constraintEnd_toStartOf="@+id/PubBox"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/PublishedStory"
+                    android:id="@+id/CreatedTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="@{create_date}"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/date_time_size"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -115,33 +116,33 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="Create"
+                    android:text="@string/created"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/time_date_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/PublishedStory" />
+                    app:layout_constraintTop_toBottomOf="@+id/CreatedTitle" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/ViewBox"
+                android:id="@+id/PubBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                app:layout_constraintEnd_toStartOf="@+id/RatingBox"
+                android:padding="@dimen/time_date_box_padding"
+                app:layout_constraintEnd_toStartOf="@+id/UpdateBox"
                 app:layout_constraintStart_toEndOf="@+id/PublishedBox"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/ViewStory"
+                    android:id="@+id/PublishedText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/date_time_size"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -150,40 +151,39 @@
                     android:text="@{publish_date}"/>
 
                 <TextView
-                    android:id="@+id/ViewText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="Published"
+                    android:text="@string/published"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/time_date_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ViewStory" />
+                    app:layout_constraintTop_toBottomOf="@+id/PublishedText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/RatingBox"
+                android:id="@+id/UpdateBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="5sp"
+                android:padding="@dimen/time_date_box_padding"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ViewBox"
+                app:layout_constraintStart_toEndOf="@+id/PubBox"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/RatingStory"
+                    android:id="@+id/UpdateText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/date_time_size"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -192,18 +192,17 @@
                     android:text="@{update_date}"/>
 
                 <TextView
-                    android:id="@+id/RatingText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="Update"
+                    android:text="@string/update"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/time_date_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/RatingStory" />
+                    app:layout_constraintTop_toBottomOf="@+id/UpdateText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -215,7 +214,7 @@
             android:text = "@{item.description}"
             android:textColor="@android:color/darker_gray"
             tools:text = "Bangladesh, to the east of India on the Bay of Bengal, is a South Asian country marked by lush greenery and many waterways. Its Padma (Ganges), Meghna and Jamuna rivers create fertile plains, and travel by boat is common. On the southern coast, the Sundarbans, an enormous mangrove forest shared with Eastern India, is home to the royal Bengal tiger."
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/details_margin_top"
             app:layout_constraintWidth_percent=".95"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -226,11 +225,11 @@
         <TextView
             android:id="@+id/TopicText"
             app:layout_constraintWidth_percent=".95"
-            android:text="Topics"
+            android:text="@string/topics"
             android:textStyle="bold"
-            android:textSize="15sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="10dp"
+            android:textSize="@dimen/topic_size"
+            android:textColor="@color/title_color"
+            android:layout_marginTop="@dimen/topic_margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/RepoDetails"
@@ -240,7 +239,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/TopicRecyclerView"
             android:layout_width="match_parent"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/topic_view_margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TopicText"

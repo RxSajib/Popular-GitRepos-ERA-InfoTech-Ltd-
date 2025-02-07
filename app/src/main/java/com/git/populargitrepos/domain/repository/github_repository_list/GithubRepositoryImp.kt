@@ -9,6 +9,7 @@ import com.git.populargitrepos.data.remote.dto.RepositoryListResponse
 import com.git.populargitrepos.domain.model.Item
 import com.git.populargitrepos.domain.model.Owner
 import com.git.populargitrepos.utils.NetworkResult
+import java.net.UnknownHostException
 
 private const val TAG = "GithubRepositoryImp"
 
@@ -17,77 +18,6 @@ class GithubRepositoryImp(
     private val repositoryDao: Dao,
     private val context: Context
 ) : GithubRepository {
-    /* override suspend fun getRepositoryList(): NetworkResult<RepositoryListResponse> {
-
-         val s = isNetworkAvailable(context)
-         return try {
-             val response = api.repositoryList()
-             if(response.isSuccessful && response.body() != null){
-                 response.body()?.let {
-                     NetworkResult.Success(data = it)
-
-                 } ?: NetworkResult.Empty()
-             }else {
-                 NetworkResult.Error("Error: ${response.code()} ${response.message()}")
-             }
-
-         }catch (e : Exception){
-             NetworkResult.Error(message = e.message?: "")
-         }
-     }*/
-
-    /*   override suspend fun getRepositoryList(): NetworkResult<RepositoryListResponse> {
-           return try {
-               if (isNetworkAvailable(context)) { // Check network connectivity
-                   val response = api.repositoryList()
-                   if (response.isSuccessful && response.body() != null) {
-                       response.body()?.let { apiResponse ->
-                           val repositoryEntities = apiResponse.items?.map { item ->
-                               Item(
-                                   id = item?.id,
-                                   name = item?.name,
-                                   description = item?.description,
-                                   owner = Owner(
-                                       avatar_url = item?.owner?.avatar_url,
-
-                                   )
-                               )
-                           }
-                           repositoryDao.clearRepositories()
-                           repositoryEntities?.let {
-                               repositoryDao.insertRepositories(it)
-                           }
-
-                           NetworkResult.Success(data = apiResponse)
-                       } ?: NetworkResult.Empty()
-                   } else {
-                       NetworkResult.Error("Error: ${response.code()} ${response.message()}")
-                   }
-               } else {
-                   // Fetch data from Room if offline
-                   val cachedRepositories = repositoryDao.getAllRepositories()
-                   if (cachedRepositories.isNotEmpty()) {
-                       val responseData = RepositoryListResponse(items = cachedRepositories.map {
-                           Item(
-                               id = it?.id,
-                               name = it?.name,
-                               description = it?.description,
-                               owner = Owner(
-                                   avatar_url = it?.owner?.avatar_url,
-
-                                   )
-                           )
-                       })
-                       NetworkResult.Success(responseData)
-                   } else {
-                       NetworkResult.Error("No Internet & No Cached Data Found")
-                   }
-               }
-           } catch (e: Exception) {
-               NetworkResult.Error(message = e.message ?: "Unknown error")
-           }
-       }*/
-
 
     override suspend fun getRepositoryList(): NetworkResult<RepositoryListResponse> {
         return try {
@@ -102,12 +32,13 @@ class GithubRepositoryImp(
                                     name = it.name ?: "Unknown",
                                     description = it.description ?: "No description",
                                     owner = it.owner?.let { owner ->
-                                        Owner(avatar_url = owner.avatar_url ?: "")
+                                        Owner(avatar_url = owner.avatar_url ?: "", login = owner.login)
                                     },
                                     topics = it.topics,
                                     pushed_at = it.pushed_at,
                                     created_at = it.created_at,
-                                    updated_at = it.updated_at
+                                    updated_at = it.updated_at,
+                                    language = it.language
                                 )
                             }
                         } ?: emptyList()
@@ -142,7 +73,10 @@ class GithubRepositoryImp(
                     NetworkResult.Error("No Internet & No Cached Data Found")
                 }
             }
-        } catch (e: Exception) {
+        } catch (e : UnknownHostException){
+            NetworkResult.Error(message = "No internet connection "+e.message)
+        }
+        catch (e: Exception) {
             NetworkResult.Error(message = e.message ?: "Unknown error")
         }
     }
