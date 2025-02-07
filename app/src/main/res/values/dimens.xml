@@ -15,4 +15,12 @@
     <dimen name="repository_margin_padding">5dp</dimen>
     <!--repository single item size-->
 
+    <!--search keyword item-->
+    <dimen name="search_keyword_padding_start_end">8dp</dimen>
+    <dimen name="search_keyword_padding_top_bottom">5dp</dimen>
+    <dimen name="search_keyword_margin">5dp</dimen>
+    <dimen name="search_keyword_padding">5dp</dimen>
+    <dimen name="search_keyword_text_size">12sp</dimen>
+    <!--search keyword item-->
+
 </resources>

@@ -103,12 +103,16 @@ class GithubRepositoryImp(
                                     description = it.description ?: "No description",
                                     owner = it.owner?.let { owner ->
                                         Owner(avatar_url = owner.avatar_url ?: "")
-                                    }
+                                    },
+                                    topics = it.topics,
+                                    pushed_at = it.pushed_at,
+                                    created_at = it.created_at,
+                                    updated_at = it.updated_at
                                 )
                             }
                         } ?: emptyList()
 
-                        // Cache in Room Database
+                        //todo Cache in Room Database
                         repositoryDao.clearRepositories()
                         repositoryDao.insertRepositories(repositoryEntities)
 
@@ -124,7 +128,7 @@ class GithubRepositoryImp(
                     NetworkResult.Error("Error: ${response.code()} ${response.message()}")
                 }
             } else {
-                // Fetch data from Room if offline
+                //todo Fetch data from Room if offline
                 val cachedRepositories = repositoryDao.getAllRepositories()
                 if (cachedRepositories.isNotEmpty()) {
                     NetworkResult.Success(

@@ -82,4 +82,8 @@ dependencies {
     //todo navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    //todo flexbox for recylerview
+    implementation (libs.flexbox)
+
 }

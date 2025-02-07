@@ -2,6 +2,7 @@
 agp = "8.8.0"
 coil = "2.7.0"
 converterGson = "2.11.0"
+flexbox = "3.0.0"
 hiltAndroidCompiler = "2.55"
 kotlin = "2.1.10"
 coreKtx = "1.15.0"
@@ -24,6 +25,7 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingRuntime" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomCompiler" }
+flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 room-ktx = {module = "androidx.room:room-ktx", version.ref = "roomCompiler"}
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
