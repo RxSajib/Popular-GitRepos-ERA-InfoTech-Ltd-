@@ -87,4 +87,31 @@ dependencies {
     //todo flexbox for recylerview
     implementation (libs.flexbox)
 
+
+
+
+    //todo testing -----------------------------------------------------------------------
+    //todo testing core-testing
+    testImplementation(libs.androidx.core.testing)
+    androidTestImplementation(libs.androidx.core.testing)
+
+    //todo coroutines test
+    testImplementation (libs.kotlinx.coroutines.test)
+    androidTestImplementation (libs.kotlinx.coroutines.test)
+
+    //todo hilt testing
+    testImplementation(libs.hilt.android.testing)
+    kspAndroidTest(libs.hilt.android.compiler)
+    kspAndroidTest(libs.dagger.hilt.compiler.v255)
+    kspAndroidTest(libs.dagger.hilt.compiler.v255)
+
+    testImplementation(libs.hilt.android.testing.v250)
+    kspTest(libs.com.google.dagger.hilt.compiler2)
+
+    //todo test runner
+    androidTestImplementation(libs.androidx.runner)
+    testImplementation(libs.androidx.runner)
+
+    //todo test core
+    androidTestImplementation(libs.core.ktx)
 }
