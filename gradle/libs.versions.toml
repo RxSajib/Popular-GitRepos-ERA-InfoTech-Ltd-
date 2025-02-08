@@ -2,14 +2,20 @@
 agp = "8.8.0"
 coil = "2.7.0"
 converterGson = "2.11.0"
+coreKtxVersion = "1.6.1"
+coreTesting = "2.2.0"
 flexbox = "3.0.0"
 hiltAndroidCompiler = "2.55"
+hiltAndroidTesting = "2.51.1"
+hiltAndroidTestingVersion = "2.50"
+hiltCompilerVersion = "2.55"
 kotlin = "2.1.10"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
+kotlinxCoroutinesTest = "1.10.1"
 loggingInterceptor = "4.12.0"
 material = "1.12.0"
 activity = "1.10.0"
@@ -19,13 +25,22 @@ navigationFragmentKtx = "2.8.6"
 navigationUiKtx = "2.8.6"
 pagingRuntime = "3.3.5"
 roomCompiler = "2.6.1"
+runner = "1.6.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingRuntime" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomCompiler" }
+androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
+com-google-dagger-hilt-compiler2 = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltAndroidTestingVersion" }
+core-ktx = { module = "androidx.test:core-ktx", version.ref = "coreKtxVersion" }
+dagger-hilt-compiler-v255 = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompilerVersion" }
 flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
+hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTesting" }
+hilt-android-testing-v250 = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTestingVersion" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 room-ktx = {module = "androidx.room:room-ktx", version.ref = "roomCompiler"}
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
