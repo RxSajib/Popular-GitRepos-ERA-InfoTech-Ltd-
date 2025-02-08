@@ -64,15 +64,8 @@ object GitHubClint {
     @Singleton
     fun provideDao(gitHubDatabase: GitHubDatabase) : Dao = gitHubDatabase.githubDao()
 
-    //todo room database implementation
-    @Provides
-    @Singleton
-    fun provideDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
-        context = context,
-        GitHubDatabase::class.java,
-        GITHUB_DATABASE_ROOT
-    ).fallbackToDestructiveMigration()
-        .build()
+
+
 
     @Singleton
     @Provides

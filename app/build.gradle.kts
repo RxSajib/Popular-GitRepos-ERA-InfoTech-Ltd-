@@ -15,12 +15,12 @@ android {
 
     defaultConfig {
         applicationId = "com.git.populargitrepos"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.git.populargitrepos.runner.CustomRunner" //androidx.test.runner.AndroidJUnitRunner
     }
 
     buildTypes {
@@ -63,6 +63,7 @@ dependencies {
     //todo add room database
     implementation(libs.androidx.room.runtime)
     implementation(libs.room.ktx)
+    androidTestImplementation(libs.hilt.android.testing)
     ksp(libs.androidx.room.compiler)
 
     //todo network clint by retrofit

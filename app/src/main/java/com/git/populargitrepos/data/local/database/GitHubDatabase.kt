@@ -8,7 +8,7 @@ import com.git.populargitrepos.domain.model.Item
 import com.git.populargitrepos.utils.OwnerTypeConverter
 import com.git.populargitrepos.utils.StringListConverter
 
-@Database(entities = [Item::class], version = 961  , exportSchema = false)
+@Database(entities = [Item::class], version = 951  , exportSchema = false)
 @TypeConverters( OwnerTypeConverter::class, StringListConverter::class)  //todo Add typeconverter
 
 abstract class GitHubDatabase : RoomDatabase() {
