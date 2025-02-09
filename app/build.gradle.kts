@@ -25,7 +25,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -115,4 +116,9 @@ dependencies {
 
     //todo test core
     androidTestImplementation(libs.core.ktx)
+
+    //todo mock webserver
+    testImplementation(libs.mockwebserver)
+    testImplementation ("org.junit.jupiter:junit-jupiter:5.7.2")
+
 }
