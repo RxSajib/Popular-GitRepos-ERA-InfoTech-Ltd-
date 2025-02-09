@@ -1,12 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.ksp)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.safeargs.navigation )
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.parcelize)
 
-    id("com.google.devtools.ksp")
-    id("com.google.dagger.hilt.android")
-    id("androidx.navigation.safeargs.kotlin")
-    id("kotlin-kapt")
-    id("kotlin-parcelize")
 }
 
 android {
@@ -119,6 +119,6 @@ dependencies {
 
     //todo mock webserver
     testImplementation(libs.mockwebserver)
-    testImplementation ("org.junit.jupiter:junit-jupiter:5.7.2")
+    testImplementation (libs.junit.jupiter)
 
 }
