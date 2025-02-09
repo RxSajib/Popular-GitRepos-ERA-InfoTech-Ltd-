@@ -6,9 +6,10 @@ coreKtxVersion = "1.6.1"
 coreTesting = "2.2.0"
 flexbox = "3.0.0"
 hiltAndroidCompiler = "2.55"
-hiltAndroidTesting = "2.51.1"
-hiltAndroidTestingVersion = "2.50"
+hiltAndroidTesting = "2.55"
+hiltAndroidTestingVersion = "2.55"
 hiltCompilerVersion = "2.55"
+junitJupiter = "5.7.2"
 kotlin = "2.1.10"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -28,6 +29,11 @@ roomCompiler = "2.6.1"
 runner = "1.6.2"
 moc = "4.12.0"
 
+ksp = "2.1.0-1.0.29"
+hilt = "2.55"
+navigation = "2.8.6"
+
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
@@ -41,6 +47,7 @@ dagger-hilt-compiler-v255 = { module = "com.google.dagger:hilt-compiler", versio
 flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTesting" }
 hilt-android-testing-v250 = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTestingVersion" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiter" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "moc" }
 room-ktx = {module = "androidx.room:room-ktx", version.ref = "roomCompiler"}
@@ -64,4 +71,11 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converte
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+navigation = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt"}
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize"}
+safeargs-navigation = { id = "androidx.navigation.safeargs.kotlin"}
+hilt-android = { id = "com.google.dagger.hilt.android"}
+google-ksp = { id = "com.google.devtools.ksp"}
